@@ -344,6 +344,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── 客户案例 ── */}
+      <section style={{ padding: '4rem 0', backgroundColor: '#F9FAFB' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="section-tag">客户案例</span>
+            <h2 className="section-title">服务众多行业领先企业</h2>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2rem', alignItems: 'center' }}>
+            {[
+              '三一重工', '中联重科', '徐工集团', '柳工机械', '山河智能',
+              '振华重工', '中国中车', '中船重工', '宝钢集团', '鞍钢集团'
+            ].map((client, idx) => (
+              <div key={idx} style={{
+                height: '100px',
+                backgroundColor: '#fff',
+                borderRadius: '12px',
+                border: '1px solid #E5E7EB',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1.5rem',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
+              >
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.125rem', fontWeight: 700, color: '#374151', marginBottom: '0.25rem' }}>
+                    {client}
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#9CA3AF', letterSpacing: '0.05em' }}>LOGO</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── News Preview ── */}
       <section id="news-preview" className="news-section">
         <div className="container">

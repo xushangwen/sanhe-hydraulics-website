@@ -7,22 +7,31 @@ const coreValues = [
     title: '灵活制造',
     icon: 'ri-settings-3-line',
     desc: '多元灵活加工设备，严格品质管理，持续流程改进，满足客户多样化定制需求。',
-    color: '#991B1B',
+    color: '#B81C22',
   },
   {
     num: '02',
     title: '卓越服务',
     icon: 'ri-customer-service-2-line',
     desc: '售前咨询 → 售中支持 → 售后维护，终身无忧全链条服务体系。',
-    color: '#1E3A5F',
+    color: '#111827',
   },
   {
     num: '03',
     title: '人才驱动',
     icon: 'ri-team-line',
     desc: '用知识驱动机械的未来，持续投入人才培养与技术创新。',
-    color: '#065F46',
+    color: '#374151',
   },
+]
+
+const milestones = [
+  { year: '2010', title: '公司成立', desc: '三合液压（常州）有限公司在常州武进高新区成立，专注液压集成块制造' },
+  { year: '2015', title: '产能扩张', desc: '工厂扩建至5000㎡，引进先进CNC加工中心，年产能突破20,000只' },
+  { year: '2018', title: '技术升级', desc: '建立完整质量管理体系，通过ISO 9001认证，成为多家知名企业供应商' },
+  { year: '2020', title: 'Atlantic 授权', desc: '获得意大利Atlantic Fluid Tech中国区唯一代理商授权' },
+  { year: '2022', title: '子公司成立', desc: '全资子公司北京赛弗德克成立，专注高端电液控制产品国产化' },
+  { year: '2024', title: '持续创新', desc: '年产能达25,000+只，服务客户覆盖工程机械、港口、能源等多个领域' },
 ]
 
 const mfgStats = [
@@ -38,11 +47,9 @@ export default function About() {
       {/* Hero */}
       <section style={{
         padding: '5rem 0 4rem',
-        background: 'linear-gradient(160deg, #111827 0%, #1E3A5F 100%)',
-        position: 'relative', overflow: 'hidden',
+        backgroundColor: '#111827',
+        position: 'relative',
       }}>
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.04, backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
-        <div style={{ position: 'absolute', bottom: '-50px', right: '10%', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(153,27,27,0.2) 0%, transparent 70%)', filter: 'blur(50px)' }} />
 
         <div className="container" style={{ position: 'relative' }}>
           <div style={{ maxWidth: '680px' }}>
@@ -72,8 +79,79 @@ export default function About() {
         </div>
       </section>
 
-      {/* Core Values */}
-      <section style={{ padding: '5rem 0' }}>
+      {/* ── 公司介绍 ── */}
+      <section id="company-intro" style={{ padding: '5rem 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <span className="section-tag">公司介绍</span>
+            <h2 className="section-title">专注液压集成块定制及技术解决方案</h2>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+            <div>
+              <p style={{ fontSize: '1rem', color: '#374151', lineHeight: 1.85, marginBottom: '1.5rem' }}>
+                三合液压（常州）有限公司是一家致力于液压集成块设计、制造，并提供液压系统解决方案的技术型生产企业。公司位于常州武进高新技术产业开发区，工厂面积5000平方米，员工30余人。公司拥有先进的组装测试设备和严格的生产管理体系。
+              </p>
+              <p style={{ fontSize: '0.9375rem', color: '#6B7280', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+                我们在进行自主战略创新的同时，在液压元件和系统集成方面，给世界知名液压品牌企业和行业经销商客户提供专业的解决方案，及卓越的一站式可持续式服务。
+              </p>
+              <p style={{ fontSize: '0.9375rem', color: '#6B7280', lineHeight: 1.8 }}>
+                液控未来，同心致远。我们重视用户体验，为客户开发优势方案产品，帮助其创造并获取更大价值。我们利用多年积累的行业市场经验，以技术创新不断巩固行业领先地位。为工程机械、港口机械、海事海工、能源、冶金、工业制造等众多应用领域，提供极其可靠的解决方案和产品。
+              </p>
+            </div>
+
+            <div style={{ height: '420px', backgroundColor: '#F9FAFB', borderRadius: '16px', border: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
+              <i className="ri-image-line" style={{ fontSize: '4rem', color: '#D1D5DB' }} />
+              <span style={{ fontSize: '0.875rem', color: '#9CA3AF', letterSpacing: '0.05em' }}>公司形象图片占位</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 发展历程 ── */}
+      <section id="history" style={{ padding: '5rem 0', backgroundColor: '#F9FAFB' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <span className="section-tag">发展历程</span>
+            <h2 className="section-title">十余年深耕，持续创新</h2>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+            {milestones.map((milestone, idx) => (
+              <div key={milestone.year} style={{
+                padding: '2rem',
+                backgroundColor: '#fff',
+                borderRadius: '14px',
+                border: '1px solid #E5E7EB',
+                position: 'relative',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.08)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <div style={{
+                    width: '56px', height: '56px',
+                    borderRadius: '12px',
+                    backgroundColor: '#FEF2F2',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '1.125rem', fontWeight: 800,
+                    color: '#B81C22',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                  }}>
+                    {milestone.year}
+                  </div>
+                  <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#111827' }}>{milestone.title}</h3>
+                </div>
+                <p style={{ fontSize: '0.875rem', color: '#6B7280', lineHeight: 1.7 }}>{milestone.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 企业理念 ── */}
+      <section id="values" style={{ padding: '5rem 0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <span className="section-tag">核心价值</span>
@@ -121,8 +199,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Manufacturing Data */}
-      <section style={{ padding: '5rem 0', background: 'linear-gradient(160deg, #F9FAFB 0%, #F3F4F6 100%)' }}>
+      {/* ── 制造实力 ── */}
+      <section id="manufacturing" style={{ padding: '5rem 0', backgroundColor: '#F9FAFB' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
             <div>
@@ -140,7 +218,7 @@ export default function About() {
                     borderRadius: '12px',
                     border: '1px solid #E5E7EB',
                   }}>
-                    <i className={stat.icon} style={{ fontSize: '1.25rem', color: '#991B1B', marginBottom: '0.75rem', display: 'block' }} />
+                    <i className={stat.icon} style={{ fontSize: '1.25rem', color: '#B81C22', marginBottom: '0.75rem', display: 'block' }} />
                     <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#111827', fontFamily: 'Space Grotesk, sans-serif', marginBottom: '0.25rem' }}>{stat.value}</div>
                     <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>{stat.label}</div>
                   </div>
@@ -164,7 +242,7 @@ export default function About() {
                   ].map(eq => (
                     <div key={eq.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem', backgroundColor: '#F9FAFB', borderRadius: '8px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#991B1B', flexShrink: 0 }} />
+                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#B81C22', flexShrink: 0 }} />
                         <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#111827' }}>{eq.name}</span>
                       </div>
                       <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>{eq.note}</span>
@@ -177,8 +255,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Atlantic Partnership */}
-      <section style={{ padding: '5rem 0' }}>
+      {/* ── Atlantic 合作背景 ── */}
+      <section id="atlantic" style={{ padding: '5rem 0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <span className="section-tag">战略合作</span>
@@ -192,7 +270,7 @@ export default function About() {
             display: 'grid', gridTemplateColumns: '1fr 2fr',
           }}>
             <div style={{
-              background: 'linear-gradient(160deg, #065F46 0%, #047857 100%)',
+              backgroundColor: '#111827',
               padding: '4rem 3rem',
               display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
               textAlign: 'center', gap: '1.5rem',
@@ -233,14 +311,14 @@ export default function About() {
                   { label: '600+', desc: '年承接项目' },
                 ].map(s => (
                   <div key={s.desc} style={{ textAlign: 'center', padding: '1rem', backgroundColor: '#F9FAFB', borderRadius: '10px' }}>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#065F46', fontFamily: 'Space Grotesk, sans-serif' }}>{s.label}</div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#B81C22', fontFamily: 'Space Grotesk, sans-serif' }}>{s.label}</div>
                     <div style={{ fontSize: '0.78rem', color: '#6B7280', marginTop: '0.25rem' }}>{s.desc}</div>
                   </div>
                 ))}
               </div>
               <Link to="/products/atlantic" style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                padding: '0.75rem 1.75rem', backgroundColor: '#065F46', color: '#fff',
+                padding: '0.75rem 1.75rem', backgroundColor: '#B81C22', color: '#fff',
                 borderRadius: '8px', fontWeight: 700, fontSize: '0.875rem',
               }}>
                 查看 Atlantic 产品 <i className="ri-arrow-right-line" />
@@ -250,8 +328,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Safe Motion */}
-      <section style={{ padding: '5rem 0', backgroundColor: '#F9FAFB' }}>
+      {/* ── Safe Motion 子公司 ── */}
+      <section id="safemotion" style={{ padding: '5rem 0', backgroundColor: '#F9FAFB' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <span className="section-tag">子公司</span>
@@ -268,7 +346,7 @@ export default function About() {
               <h3 style={{ fontSize: '1.375rem', fontWeight: 800, color: '#111827', marginBottom: '1rem' }}>
                 北京赛弗德克科技有限公司
               </h3>
-              <div style={{ fontSize: '0.82rem', color: '#4C1D95', fontWeight: 600, marginBottom: '1.25rem' }}>
+              <div style={{ fontSize: '0.82rem', color: '#B81C22', fontWeight: 600, marginBottom: '1.25rem' }}>
                 三合液压全资子公司 · 北京
               </div>
               <p style={{ fontSize: '0.95rem', color: '#374151', lineHeight: 1.8, marginBottom: '1.5rem' }}>
@@ -284,12 +362,12 @@ export default function About() {
                 {['高频响伺服比例阀', '数字电液执行器', '比例方向阀', '全总线支持', '专精特新路线'].map(tag => (
                   <span key={tag} style={{
                     padding: '0.3rem 0.75rem',
-                    backgroundColor: '#F5F3FF',
-                    color: '#4C1D95',
+                    backgroundColor: '#FEF2F2',
+                    color: '#B81C22',
                     borderRadius: '100px',
                     fontSize: '0.78rem',
                     fontWeight: 500,
-                    border: '1px solid #DDD6FE',
+                    border: '1px solid rgba(184,28,34,0.2)',
                   }}>
                     {tag}
                   </span>
@@ -297,7 +375,7 @@ export default function About() {
               </div>
               <Link to="/products/safemotion" style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                padding: '0.75rem 1.75rem', backgroundColor: '#4C1D95', color: '#fff',
+                padding: '0.75rem 1.75rem', backgroundColor: '#B81C22', color: '#fff',
                 borderRadius: '8px', fontWeight: 700, fontSize: '0.875rem',
               }}>
                 查看 Safe Motion 产品 <i className="ri-arrow-right-line" />
@@ -305,7 +383,7 @@ export default function About() {
             </div>
 
             <div style={{
-              background: 'linear-gradient(160deg, #4C1D95 0%, #6D28D9 100%)',
+              backgroundColor: '#111827',
               padding: '4rem 2rem',
               display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
               textAlign: 'center', gap: '1.5rem',
@@ -337,11 +415,11 @@ export default function About() {
           </h3>
           <p style={{ color: '#6B7280', marginBottom: '2rem' }}>了解三合液压更多信息或洽谈合作，请联系我们</p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" style={{ padding: '0.75rem 2rem', backgroundColor: '#991B1B', color: '#fff', borderRadius: '8px', fontWeight: 700 }}>
+            <Link to="/contact" style={{ padding: '0.75rem 2rem', backgroundColor: '#B81C22', color: '#fff', borderRadius: '8px', fontWeight: 700 }}>
               联系我们
             </Link>
             <a href="tel:+865198648768" style={{ padding: '0.75rem 2rem', border: '1px solid #E5E7EB', color: '#374151', borderRadius: '8px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <i className="ri-phone-line" style={{ color: '#991B1B' }} />
+              <i className="ri-phone-line" style={{ color: '#B81C22' }} />
               +86 519 8648 7689
             </a>
           </div>

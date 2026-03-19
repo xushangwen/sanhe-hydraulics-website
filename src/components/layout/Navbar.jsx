@@ -28,8 +28,28 @@ const navItems = [
       { label: '注塑机射胶', path: '/solutions/injection-molding' },
     ],
   },
-  { label: '技术 & 研发', path: '/technology' },
-  { label: '关于我们', path: '/about' },
+  {
+    label: '技术 & 研发',
+    path: '/technology',
+    children: [
+      { label: '研发能力', path: '/technology#rd-capability', hash: true },
+      { label: '技术团队', path: '/technology#tech-team', hash: true },
+      { label: '质量管理', path: '/technology#quality', hash: true },
+      { label: '创新成果', path: '/technology#innovation', hash: true },
+    ],
+  },
+  {
+    label: '关于我们',
+    path: '/about',
+    children: [
+      { label: '公司介绍', path: '/about#company-intro', hash: true },
+      { label: '发展历程', path: '/about#history', hash: true },
+      { label: '企业理念', path: '/about#values', hash: true },
+      { label: '制造实力', path: '/about#manufacturing', hash: true },
+      { label: 'Atlantic 合作', path: '/about#atlantic', hash: true },
+      { label: 'Safe Motion 子公司', path: '/about#safemotion', hash: true },
+    ],
+  },
   { label: '新闻资讯', path: '/news' },
   { label: '联系我们', path: '/contact' },
 ]
@@ -100,15 +120,26 @@ export default function Navbar() {
                   onMouseLeave={handleDropdownLeave}
                 >
                   {item.children.map((child) => (
-                    <NavLink
-                      key={child.path}
-                      to={child.path}
-                      className={({ isActive }) =>
-                        `navbar__dropdown-link${isActive ? ' navbar__dropdown-link--active' : ''}`
-                      }
-                    >
-                      {child.label}
-                    </NavLink>
+                    child.hash ? (
+                      <a
+                        key={child.path}
+                        href={child.path}
+                        className="navbar__dropdown-link"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        {child.label}
+                      </a>
+                    ) : (
+                      <NavLink
+                        key={child.path}
+                        to={child.path}
+                        className={({ isActive }) =>
+                          `navbar__dropdown-link${isActive ? ' navbar__dropdown-link--active' : ''}`
+                        }
+                      >
+                        {child.label}
+                      </NavLink>
+                    )
                   ))}
                 </div>
               )}
@@ -152,15 +183,26 @@ export default function Navbar() {
               {item.children && (
                 <div className="navbar__mobile-children">
                   {item.children.map((child) => (
-                    <NavLink
-                      key={child.path}
-                      to={child.path}
-                      className={({ isActive }) =>
-                        `navbar__mobile-child-link${isActive ? ' navbar__mobile-child-link--active' : ''}`
-                      }
-                    >
-                      {child.label}
-                    </NavLink>
+                    child.hash ? (
+                      <a
+                        key={child.path}
+                        href={child.path}
+                        className="navbar__mobile-child-link"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {child.label}
+                      </a>
+                    ) : (
+                      <NavLink
+                        key={child.path}
+                        to={child.path}
+                        className={({ isActive }) =>
+                          `navbar__mobile-child-link${isActive ? ' navbar__mobile-child-link--active' : ''}`
+                        }
+                      >
+                        {child.label}
+                      </NavLink>
+                    )
                   ))}
                 </div>
               )}
