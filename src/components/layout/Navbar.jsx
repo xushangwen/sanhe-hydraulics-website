@@ -202,10 +202,6 @@ export default function Navbar() {
 
         {/* ── Right Actions ── */}
         <div className="navbar__actions">
-          <a href="tel:+865198648768" className="navbar__phone">
-            <i className="ri-phone-line" />
-            +86 519 8648 7689
-          </a>
           <Link to="/contact" className="navbar__cta">
             立即咨询
           </Link>
