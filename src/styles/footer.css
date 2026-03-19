@@ -88,7 +88,7 @@
 }
 
 .footer__brand-logo-img {
-  height: 22px;
+  height: 32px;
   width: auto;
   /* invert colors for dark background */
   filter: brightness(0) invert(1);
