@@ -60,6 +60,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const openTimer = useRef(null)
   const closeTimer = useRef(null)
+  const isHoveringRef = useRef(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -74,6 +75,9 @@ export default function Navbar() {
   }, [location])
 
   const handleDropdownEnter = (path) => {
+    // 标记正在悬停
+    isHoveringRef.current = true
+    
     // 立即清除所有关闭定时器
     if (closeTimer.current) {
       clearTimeout(closeTimer.current)
@@ -84,24 +88,33 @@ export default function Navbar() {
       openTimer.current = null
     }
     
-    // 立即打开或切换，不使用延迟
-    // 延迟会导致状态不同步，引发消失问题
+    // 立即打开或切换
     setActiveDropdown(path)
   }
 
   const handleDropdownLeave = () => {
+    // 标记离开悬停
+    isHoveringRef.current = false
+    
     // 清除打开定时器
     if (openTimer.current) {
       clearTimeout(openTimer.current)
       openTimer.current = null
     }
-    // 使用较长的延迟，确保鼠标有足够时间移动到下拉菜单
+    
+    // 延迟关闭，给鼠标移动到下拉菜单的时间
     closeTimer.current = setTimeout(() => {
-      setActiveDropdown(null)
+      // 二次检查：如果用户又回到悬停区域，不关闭
+      if (!isHoveringRef.current) {
+        setActiveDropdown(null)
+      }
     }, 200)
   }
 
   const handleDropdownContentEnter = () => {
+    // 标记正在悬停
+    isHoveringRef.current = true
+    
     // 鼠标进入下拉菜单内容区，立即清除所有定时器
     if (closeTimer.current) {
       clearTimeout(closeTimer.current)
@@ -136,8 +149,6 @@ export default function Navbar() {
             <div
               key={item.path}
               className="navbar__nav-item"
-              onMouseEnter={() => item.children && handleDropdownEnter(item.path)}
-              onMouseLeave={() => item.children && handleDropdownLeave()}
             >
               <NavLink
                 to={item.path}
@@ -145,6 +156,8 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `navbar__nav-link${isActive ? ' navbar__nav-link--active' : ''}`
                 }
+                onMouseEnter={() => item.children && handleDropdownEnter(item.path)}
+                onMouseLeave={() => item.children && handleDropdownLeave()}
               >
                 {item.label}
                 {item.children && (
