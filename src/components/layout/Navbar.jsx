@@ -74,7 +74,7 @@ export default function Navbar() {
   }, [location])
 
   const handleDropdownEnter = (path) => {
-    // 清除所有定时器
+    // 立即清除所有关闭定时器
     if (closeTimer.current) {
       clearTimeout(closeTimer.current)
       closeTimer.current = null
@@ -84,15 +84,9 @@ export default function Navbar() {
       openTimer.current = null
     }
     
-    // 如果已经打开了其他下拉菜单，立即切换
-    if (activeDropdown && activeDropdown !== path) {
-      setActiveDropdown(path)
-    } else if (!activeDropdown) {
-      // 首次打开，添加短暂延迟避免误触
-      openTimer.current = setTimeout(() => {
-        setActiveDropdown(path)
-      }, 100)
-    }
+    // 立即打开或切换，不使用延迟
+    // 延迟会导致状态不同步，引发消失问题
+    setActiveDropdown(path)
   }
 
   const handleDropdownLeave = () => {
@@ -101,14 +95,14 @@ export default function Navbar() {
       clearTimeout(openTimer.current)
       openTimer.current = null
     }
-    // 延长关闭延迟，给用户更多时间移动鼠标
+    // 使用较长的延迟，确保鼠标有足够时间移动到下拉菜单
     closeTimer.current = setTimeout(() => {
       setActiveDropdown(null)
-    }, 300)
+    }, 200)
   }
 
   const handleDropdownContentEnter = () => {
-    // 鼠标进入下拉菜单内容区，清除所有定时器
+    // 鼠标进入下拉菜单内容区，立即清除所有定时器
     if (closeTimer.current) {
       clearTimeout(closeTimer.current)
       closeTimer.current = null
@@ -118,6 +112,14 @@ export default function Navbar() {
       openTimer.current = null
     }
   }
+
+  // 清理函数：组件卸载时清除所有定时器
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current)
+      if (openTimer.current) clearTimeout(openTimer.current)
+    }
+  }, [])
 
   return (
     <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
